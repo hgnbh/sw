@@ -14,7 +14,7 @@ class AO3Source extends ComicSource {
 
   key = "ao3"
 
-  version = "1.0.0"
+  version = "1.0.1"
 
   minAppVersion = "1.4.0"
 
@@ -52,6 +52,20 @@ class AO3Source extends ComicSource {
     if (url.startsWith("//")) return "https:" + url
     if (url.startsWith("/")) return this.baseUrl + url
     return url
+  }
+
+  /// 读取搜索选项，并去掉某些客户端自动加上的引号
+  pickOption(options, index, fallback) {
+    let value = options && options[index] != null ? options[index] : fallback
+    value = String(value).trim()
+    if (value.length >= 2) {
+      let first = value.charAt(0)
+      let last = value.charAt(value.length - 1)
+      if ((first === '"' && last === '"') || (first === "'" && last === "'")) {
+        value = value.slice(1, -1)
+      }
+    }
+    return value || fallback
   }
 
   /// 从作品链接里取出 work id
@@ -216,8 +230,8 @@ class AO3Source extends ComicSource {
   /// 搜索
   search = {
     load: async (keyword, options, page) => {
-      let sort = (options && options[0]) || "best_match"
-      let complete = options && options[1] === "complete"
+      let sort = this.pickOption(options, 0, "best_match")
+      let complete = this.pickOption(options, 1, "all") === "complete"
       let url =
         `${this.baseUrl}/works/search?work_search%5Bquery%5D=${encodeURIComponent(keyword)}` +
         `&work_search%5Bsort_column%5D=${sort}&work_search%5Bsort_direction%5D=desc&page=${page}`
