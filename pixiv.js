@@ -20,7 +20,7 @@ class PixivSource extends ComicSource {
 
   key = "pixiv"
 
-  version = "1.0.0"
+  version = "1.0.1"
 
   minAppVersion = "1.4.0"
 
@@ -60,6 +60,20 @@ class PixivSource extends ComicSource {
 
   init() {
     this.ensureCookie()
+  }
+
+  /// 读取搜索选项，并去掉某些客户端自动加上的引号
+  pickOption(options, index, fallback) {
+    let value = options && options[index] != null ? options[index] : fallback
+    value = String(value).trim()
+    if (value.length >= 2) {
+      let first = value.charAt(0)
+      let last = value.charAt(value.length - 1)
+      if ((first === '"' && last === '"') || (first === "'" && last === "'")) {
+        value = value.slice(1, -1)
+      }
+    }
+    return value || fallback
   }
 
   async getJson(url) {
@@ -143,9 +157,9 @@ class PixivSource extends ComicSource {
   /// 搜索
   search = {
     load: async (keyword, options, page) => {
-      let order = (options && options[0]) || "date_d"
-      let mode = (options && options[1]) || "all"
-      let type = (options && options[2]) || "all"
+      let order = this.pickOption(options, 0, "date_d")
+      let mode = this.pickOption(options, 1, "all")
+      let type = this.pickOption(options, 2, "all")
 
       let word = encodeURIComponent(keyword)
       let url =
