@@ -1,7 +1,7 @@
 class ComicWalker extends ComicSource {
   name = "カドコミ";
   key = "comic_walker";
-  version = "1.0.1";
+  version = "1.0.2";
   minAppVersion = "1.6.0";
   url =
     "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@main/comic_walker.js";
@@ -82,12 +82,23 @@ class ComicWalker extends ComicSource {
     }
   }
 
+  parseJson(response) {
+    try {
+      return JSON.parse(response.body);
+    } catch (e) {
+      throw new Error(
+        `ComicWalker 返回了非 JSON 内容（HTTP ${response.status}），` +
+          `站点可能被地区限制或需要代理`,
+      );
+    }
+  }
+
   async request(url, headers, method = "GET", data) {
     let response = await this.sendRequest(url, headers, method, data);
     if (response.status === 204) {
       return response;
     }
-    let body = JSON.parse(response.body);
+    let body = this.parseJson(response);
 
     // Server rejects outdated app versions ("upgrade_required"):
     // fetch the latest version from the App Store and retry once.
@@ -97,7 +108,7 @@ class ComicWalker extends ComicSource {
       if (response.status === 204) {
         return response;
       }
-      body = JSON.parse(response.body);
+      body = this.parseJson(response);
       if (body.code === "upgrade_required") {
         throw new Error(
           `ComicWalker still rejects app version ${this.latestVersion} (upgrade_required). ` +
@@ -116,7 +127,7 @@ class ComicWalker extends ComicSource {
       if (response.status === 204) {
         return response;
       }
-      body = JSON.parse(response.body);
+      body = this.parseJson(response);
       if (
         body.code === "invalid_request_parameter" ||
         body.code === "unauthorized"
@@ -132,7 +143,13 @@ class ComicWalker extends ComicSource {
 
   async init() {
     await this.updateAppVersion();
-    await this.refreshToken();
+    try {
+      await this.refreshToken();
+    } catch (e) {
+      // 地区限制 / 没挂代理时接口会返回 HTML，先跳过 token 刷新，
+      // 避免整个源在“更新”时被判定失败；等真正请求时会再刷新。
+      console.warn("ComicWalker token refresh skipped:", e);
+    }
   }
 
   explore = [
