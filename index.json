@@ -3,7 +3,7 @@
     "name": "AO3 同人图文",
     "fileName": "ao3.js",
     "key": "ao3",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   {
     "name": "爱看漫",
@@ -63,7 +63,7 @@
     "name": "动漫啦",
     "fileName": "dongman_la_fixed_v101.js",
     "key": "dongman_la",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   {
     "name": "咚漫",
@@ -132,12 +132,6 @@
     "version": "1.0.0"
   },
   {
-    "name": "爱看漫 v2",
-    "fileName": "ikmmh_v2.js",
-    "key": "ikmmh_v2",
-    "version": "3.0.0"
-  },
-  {
     "name": "jcomic.net",
     "fileName": "jcomic.js",
     "key": "jcomic",
@@ -171,7 +165,7 @@
     "name": "LOFTER 同人图文",
     "fileName": "lofter.js",
     "key": "lofter",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   {
     "name": "来漫画（分流）",
@@ -220,12 +214,6 @@
     "fileName": "manwang_fixed_v120.js",
     "key": "manwang_fixed_v120",
     "version": "1.2.0"
-  },
-  {
-    "name": "漫画1234",
-    "fileName": "mh1234.js",
-    "key": "mh1234",
-    "version": "1.0.0"
   },
   {
     "name": "18漫画",
@@ -279,7 +267,7 @@
     "name": "Pixiv 同人图",
     "fileName": "pixiv.js",
     "key": "pixiv",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   {
     "name": "Rawkuma",
@@ -352,5 +340,41 @@
     "fileName": "zerobyw33.js",
     "key": "zerobyw33",
     "version": "1.2.0"
+  },
+  {
+    "name": "漫客栈",
+    "fileName": "mkzhan.js",
+    "key": "mkzhan",
+    "version": "1.0.1"
+  },
+  {
+    "name": "布卡漫画",
+    "fileName": "bukamh.js",
+    "key": "bukamh",
+    "version": "1.0.0"
+  },
+  {
+    "name": "看漫画",
+    "fileName": "kanman.js",
+    "key": "kanman",
+    "version": "1.0.0"
+  },
+  {
+    "name": "思思漫画",
+    "fileName": "sisimanhua.js",
+    "key": "sisimanhua",
+    "version": "1.0.0"
+  },
+  {
+    "name": "漫画Manga",
+    "fileName": "mh03.js",
+    "key": "mh03",
+    "version": "1.0.1"
+  },
+  {
+    "name": "次元漫画",
+    "fileName": "cycomic.js",
+    "key": "cycomic",
+    "version": "1.0.0"
   }
 ]
