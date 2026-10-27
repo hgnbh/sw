@@ -43,13 +43,13 @@ Venera 的阅读器以「图片」为最小单位，所以同人站点按下面�
 
 | 状态 | 源 |
 | --- | --- |
-| 可直接使用 | 动漫屋、漫画人、51漫画、再漫画、GoDa、CCC、古风、瓜子、香蕉、4399、图库、W漫画、漫网、漫蛙吧、如漫画、SF漫画、腾讯动漫、咚漫、WEBTOON、飞翔、嬉皮、优酷、zero、MOJOIN、Rawkuma、爱看漫、漫小肆（已修复线路）等 |
-| 需要代理 | AO3、Pixiv、HentaiFox 系列、e-hentai、nhentai、hitomi、禁漫天堂、紳士漫畫、MangaDex、comick |
+| 可直接使用 | 动漫屋、漫画人、51漫画、再漫画、GoDa、CCC、古风、瓜子、香蕉、4399、图库、W漫画、漫网、漫蛙吧、如漫画、SF漫画、腾讯动漫、咚漫、WEBTOON、飞翔、嬉皮、优酷、zero、MOJOIN、Rawkuma、爱看漫、漫小肆、动漫啦（已修复改版）、漫客栈、布卡漫画、看漫画、思思漫画、漫画Manga、次元漫画 |
+| 需要代理 | AO3、Pixiv、HentaiFox 系列、e-hentai、nhentai、hitomi、禁漫天堂、紳士漫畫、MangaDex、comick、漫画柜、18漫画、热辣漫画、jcomic.net |
 | 需要登录 / 人机验证 | MYCOMIC（Cloudflare 验证）、NoyManga（网页登录）、Picacg（账号登录） |
-| 站点已失效 | 漫画1234（`amh1234.com` 域名已停放） |
-| 站点改版、解析待更新 | 动漫啦（`dongman.la` 已改为 `comic-card` 结构） |
+| 已移除（站点失效） | 漫画1234（`amh1234.com` 域名已停放）、爱看漫 v2（详情页 404） |
 
 > 漫小肆的 `mxshm.top`、`ikanwzd.cc` 线路已失效，源内已默认切到 `jjmh.top` 并做自动回退。
+> 动漫啦已按新结构重写（`a.comic-card`、`/manhua/so/{关键词}/`、`/all.html` 整话阅读）。
 
 ## 添加新源
 
