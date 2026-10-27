@@ -16,7 +16,7 @@ class LofterSource extends ComicSource {
 
   key = "lofter"
 
-  version = "1.0.0"
+  version = "1.0.1"
 
   minAppVersion = "1.4.0"
 
@@ -38,6 +38,20 @@ class LofterSource extends ComicSource {
       parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     }
     return parts.join("&")
+  }
+
+  /// 读取搜索选项，并去掉某些客户端自动加上的引号
+  pickOption(options, index, fallback) {
+    let value = options && options[index] != null ? options[index] : fallback
+    value = String(value).trim()
+    if (value.length >= 2) {
+      let first = value.charAt(0)
+      let last = value.charAt(value.length - 1)
+      if ((first === '"' && last === '"') || (first === "'" && last === "'")) {
+        value = value.slice(1, -1)
+      }
+    }
+    return value || fallback
   }
 
   /// 旧图床地址（nos.netease.com）转换为 CDN 地址
@@ -171,9 +185,8 @@ class LofterSource extends ComicSource {
   /// 搜索（LOFTER 只支持标签检索）
   search = {
     load: async (keyword, options, page) => {
-      let postTypes = "2"
-      if (options && options[0] === "all") postTypes = ""
-      let type = (options && options[1]) || "total"
+      let postTypes = this.pickOption(options, 0, "image") === "all" ? "" : "2"
+      let type = this.pickOption(options, 1, "total")
 
       let offset = (page - 1) * 10
       let data = await this.loadTagPosts(keyword.trim(), offset, postTypes, type)
